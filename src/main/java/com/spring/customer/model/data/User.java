@@ -19,7 +19,6 @@ public class User implements Serializable {
 	private String department;
 	private String login;
 	private String password;
-	private Enum typeCustomer;
 
 	public User() {
 	};
@@ -68,20 +67,12 @@ public class User implements Serializable {
 		return password;
 	}
 
-	public Enum getTypeCustomer() {
-		return typeCustomer;
-	}
-
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public void setType(Enum typeCustomer) {
-		this.typeCustomer = typeCustomer;
 	}
 
 	public void setId(int id) {

@@ -11,12 +11,11 @@ public class Departament implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-
+	private int id;
 	private int customerId;
 	private String name;
 	private String adress;
 	private String manager;
-
 	private String nomberSchool;
 
 	public Departament() {

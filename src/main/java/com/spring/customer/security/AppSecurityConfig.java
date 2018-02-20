@@ -23,15 +23,17 @@ public class AppSecurityConfig  extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/manage/customer/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/customers/**").permitAll()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll();
+        //http
+          //      .authorizeRequests()
+            //    .antMatchers("/manage/customer/**","/logins/**").access("hasRole('ROLE_ADMIN')").and()
+              //  .formLogin()
+                //.defaultSuccessUrl("/", true).permitAll();
+        //http
+
+          // .logout()
+            //    .permitAll();
+        http.csrf().disable();
+
     }
+
 }

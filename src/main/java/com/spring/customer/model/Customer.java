@@ -1,9 +1,8 @@
 package com.spring.customer.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.spring.customer.model.data.CustomerType;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity(name = "customer")
@@ -18,10 +17,21 @@ public class Customer implements Serializable {
 	private String email;
 	private String phone;
 	private String comments;
+	@Column(name = "type")
+	@Enumerated(EnumType.STRING)
+	private CustomerType type;
 
 	public Customer() {
 
 	};
+
+	public CustomerType getType() {
+		return type;
+	}
+
+	public void setType(CustomerType type) {
+		this.type = type;
+	}
 
 	public Customer(String name, String adress, String email, String phone, String comments) {
 		this.name = name;
