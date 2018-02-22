@@ -1,15 +1,19 @@
 package com.spring.customer.model;
 
+import com.spring.customer.model.data.Contact;
 import com.spring.customer.model.data.CustomerType;
+import com.spring.customer.model.data.Departament;
+import com.spring.customer.model.data.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
-@Entity(name = "customer")
+@Entity
+@Table(name = "customer")
 public class Customer implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+
 	private int id;
 
 	private String name;
@@ -17,30 +21,21 @@ public class Customer implements Serializable {
 	private String email;
 	private String phone;
 	private String comments;
+
+	private List <User> userList;
+	private List<Contact> contactList;
+	private List<Departament> departamentList;
+
 	@Column(name = "type")
 	@Enumerated(EnumType.STRING)
 	private CustomerType type;
 
 	public Customer() {
 
-	};
-
-	public CustomerType getType() {
-		return type;
 	}
 
-	public void setType(CustomerType type) {
-		this.type = type;
-	}
-
-	public Customer(String name, String adress, String email, String phone, String comments) {
-		this.name = name;
-		this.adress = adress;
-		this.email = email;
-		this.phone = phone;
-		this.comments = comments;
-	}
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {
 		return id;
 	}
@@ -87,5 +82,42 @@ public class Customer implements Serializable {
 
 	public void setComments(String comments) {
 		this.comments = comments;
+	}
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	public List<User> getUserList() {
+		return userList;
+	}
+
+
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
+	}
+
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	public List<Contact> getContactList() {
+		return contactList;
+	}
+
+	public void setContactList(List<Contact> contactList) {
+		this.contactList = contactList;
+	}
+
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	public List<Departament> getDepartamentList() {
+		return departamentList;
+	}
+
+	public void setDepartamentList(List<Departament> departamentList) {
+		this.departamentList = departamentList;
+	}
+
+	@Column(name = "type")
+	@Enumerated(EnumType.STRING)
+	public CustomerType getType() {
+		return type;
+	}
+
+	public void setType(CustomerType type) {
+		this.type = type;
 	}
 }

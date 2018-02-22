@@ -1,48 +1,55 @@
 package com.spring.customer.model.data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.spring.customer.model.Customer;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity(name = "departaments")
+@Entity
 public class Departament implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+
 	private int id;
-	private int customerId;
 	private String name;
 	private String adress;
 	private String manager;
 	private String nomberSchool;
-
+	private Customer customer;
 	public Departament() {
 	};
 
-	public Departament(int customerId, String name, String adress, String manager) {
-		super();
-		this.customerId = customerId;
-		this.name = name;
-		this.adress = adress;
-		this.manager = manager;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public int getId() {
+		return id;
 	}
 
-	public int getCustomerId() {
-		return customerId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getAdress() {
 		return adress;
 	}
 
+	public void setAdress(String adress) {
+		this.adress = adress;
+	}
+
 	public String getManager() {
 		return manager;
+	}
+
+	public void setManager(String manager) {
+		this.manager = manager;
 	}
 
 	public String getNomberSchool() {
@@ -53,24 +60,13 @@ public class Departament implements Serializable {
 		this.nomberSchool = nomberSchool;
 	}
 
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
+	@ManyToOne
+	@JoinColumn(name = "customer_id")
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setId(int customerId) {
-		this.customerId = customerId;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setAdress(String adress) {
-		this.adress = adress;
-	}
-
-	public void setManager(String manager) {
-		this.manager = manager;
-	}
-
 }

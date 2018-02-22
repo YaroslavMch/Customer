@@ -1,110 +1,91 @@
 package com.spring.customer.model.data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.spring.customer.model.Customer;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity(name = "users")
+@Entity
 public class User implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+
 	private int id;
-	private int customerId;
+	private Customer customer;
 	private String name;
 	private String adress;
 	private String email;
 	private String department;
 	private String login;
 	private String password;
-
 	public User() {
 	};
 
-	public User(int id, int customerId, String name, String adress, String email, String department, String login, String password) {
-		super();
-		this.id = id;
-		this.customerId = customerId;
-		this.name = name;
-		this.adress = adress;
-		this.email = email;
-		this.department = department;
-		this.login = login;
-		this.password = password;
-	}
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {
 		return id;
-	}
-
-	public int getCustomerId() {
-		return customerId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getAdress() {
-		return adress;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getDepartment() {
-		return department;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public void seId(int customerId) {
-		this.customerId = customerId;
+	@ManyToOne
+	@JoinColumn(name = "customer_id")
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	public String getAdress() {
+		return adress;
+	}
+
 	public void setAdress(String adress) {
 		this.adress = adress;
 	}
 
-	public void setUserEmail(String email) {
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
 		this.email = email;
+	}
+
+
+	public String getDepartment() {
+		return department;
 	}
 
 	public void setDepartment(String department) {
 		this.department = department;
 	}
 
+	public String getLogin() {
+		return login;
+	}
+
 	public void setLogin(String login) {
 		this.login = login;
+	}
+
+	public String getPassword() {
+		return password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 }
